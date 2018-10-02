@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#111111</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="quick_timer_text_color">#111111</color>
+    <color name="quick_timer_button_bg">#ffffff</color>
+
+    <color name="black_overlay">#2c000000</color>
+</resources>

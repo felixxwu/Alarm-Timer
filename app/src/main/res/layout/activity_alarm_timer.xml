@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".AlarmTimer">
+
+    <EditText
+        android:id="@+id/numberInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/relativeHint"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/customTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+    <Button
+        android:id="@+id/set5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="5m"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/set10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="10m"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/set15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="15m"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/set120"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="2h"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/set30" />
+
+    <Button
+        android:id="@+id/set60"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="1h"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set20" />
+
+    <Button
+        android:id="@+id/set30"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="30m"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/set10" />
+
+    <Button
+        android:id="@+id/set20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="20m"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set5" />
+
+    <Button
+        android:id="@+id/set45"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="45m"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/set15" />
+
+    <Button
+        android:id="@+id/set180"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/quick_timer_margin"
+        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginEnd="@dimen/quick_timer_margin"
+        android:background="@color/quick_timer_button_bg"
+        android:text="3h"
+        android:textAllCaps="true"
+        android:textColor="@color/quick_timer_text_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/set45" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33055556" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <Button
+        android:id="@+id/customTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="Set Custom Timer"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set180" />
+
+    <EditText
+        android:id="@+id/customLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="What's my timer for?"
+        android:inputType="textCapSentences"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toStartOf="@+id/labelSwitch"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Switch
+        android:id="@+id/labelSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:checked="false"
+        android:text="Label"
+        android:textOff="Custom Label"
+        android:textOn="Auto Label"
+        app:layout_constraintBottom_toBottomOf="@+id/customLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/customLabel" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Quick Timers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customLabel" />
+
+    <Switch
+        android:id="@+id/absoluteSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Absolute Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customTime" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="*All alarms will delete after use"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/absoluteSwitch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/absoluteSwitch" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="344dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/set30" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="344dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set30" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 79e8c8d0027962ff5c430f8845b41ff4235f77ee felixxwu <felixxwu@gmail.com> 1538009392 +0100	commit (initial): Initial commit
+79e8c8d0027962ff5c430f8845b41ff4235f77ee a5cca0c19e549c92750eee7f76ce50dba7490620 felixxwu <felixxwu@gmail.com> 1538009474 +0100	commit: removed useless import
+a5cca0c19e549c92750eee7f76ce50dba7490620 60dc0eb34c235192a8e5df9405eb621678c6aa2c felixxwu <felixxwu@gmail.com> 1538253123 +0100	commit: Added quick timer button and custom timer
+60dc0eb34c235192a8e5df9405eb621678c6aa2c 2abc9e6203ca2b888b519742be3b4dcc2384830c felixxwu <felixxwu@gmail.com> 1538304715 +0100	commit: Added custom label and more comments
+2abc9e6203ca2b888b519742be3b4dcc2384830c 16f9db0816ff6858e9ec62387ae2eee438cf3de9 felixxwu <felixxwu@gmail.com> 1538304813 +0100	commit: Removed some warnings
+16f9db0816ff6858e9ec62387ae2eee438cf3de9 d3117f8a9e01a911296972bb2ad1cd8896c6fdfe felixxwu <felixxwu@gmail.com> 1538304926 +0100	merge origin/master: Merge made by the 'recursive' strategy.
+d3117f8a9e01a911296972bb2ad1cd8896c6fdfe 5655f09b1f0f9e7385b31801933d36e50122dd3b felixxwu <felixxwu@gmail.com> 1538323005 +0100	commit: Added an absolute time mode
+5655f09b1f0f9e7385b31801933d36e50122dd3b f9a21fef76550fe7d344ae0dd64a451ef6bee063 felixxwu <felixxwu@gmail.com> 1538484332 +0100	commit: UI improvements
