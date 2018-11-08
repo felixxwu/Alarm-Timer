@@ -65,7 +65,7 @@ class AlarmTimer : AppCompatActivity() {
                     customLabel.text = null
                     setSwitchState(labelSwitch, false)
                     numberInput.text = null
-                    setSwitchState(absoluteSwitch, false)
+//                    setSwitchState(absoluteSwitch, false)
 
                     // create the alarm using intent
                     val intent = Intent (AlarmClock.ACTION_SET_ALARM)
@@ -113,23 +113,27 @@ class AlarmTimer : AppCompatActivity() {
         // hide soft keyboard
         imm.hideSoftInputFromWindow(view.windowToken, 0)
 
-        if (absoluteSwitch.isChecked) {
-            // get current time for label
-            val rightNow = Calendar.getInstance()
-            var currentHour = rightNow.get(Calendar.HOUR)
-            val currentMinute = rightNow.get(Calendar.MINUTE)
+//        if (absoluteSwitch.isChecked) {
 
-            // adjust for am/pm
-            if (rightNow.get(Calendar.AM_PM) == Calendar.PM) {
-                currentHour += 12
-            }
 
-            val label = "Alarm set at $currentHour:$currentMinute"
-            setAlarm(label, hours, minutes)
-        } else {
-            // convert hours into minutes and set a relative alarm
+//            // get current time for label
+//            val rightNow = Calendar.getInstance()
+//            var currentHour = rightNow.get(Calendar.HOUR)
+//            val currentMinute = rightNow.get(Calendar.MINUTE)
+//
+//            // adjust for am/pm
+//            if (rightNow.get(Calendar.AM_PM) == Calendar.PM) {
+//                currentHour += 12
+//            }
+//
+//            val label = "Alarm set at $currentHour:$currentMinute"
+//            setAlarm(label, hours, minutes)
+
+
+//        } else {
+//            // convert hours into minutes and set a relative alarm
             setAlarmIn(hours * 60 + minutes)
-        }
+//        }
 
     }
 
@@ -167,6 +171,11 @@ class AlarmTimer : AppCompatActivity() {
             setCustomAlarm(view, imm)
         }
 
+        toAlarms.setOnClickListener {
+            intent = Intent (AlarmClock.ACTION_SET_ALARM)
+            startActivity(intent)
+        }
+
         // set the switch state on if there is text and off if there is none
         customLabel.addTextChangedListener ( object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -177,6 +186,28 @@ class AlarmTimer : AppCompatActivity() {
                 } else {
                     setSwitchState(labelSwitch, true)
                 }
+            }
+        })
+
+        numberInput.addTextChangedListener( object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable?) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // decode the input
+                if (numberInput.text.toString() == "") {
+                    customTime.text = "Set Custom Timer"
+                    return
+                }
+                val input = Integer.parseInt(numberInput.text.toString())
+
+                var label = "Set alarm in"
+                if (input / 100 > 0) {
+                    label += " ${input / 100}h"
+                }
+                if (input % 100 > 0) {
+                    label += " ${input % 100}m"
+                }
+                customTime.text = label
             }
         })
 
@@ -192,21 +223,21 @@ class AlarmTimer : AppCompatActivity() {
         }
 
         // change the hint depending on custom timer function
-        absoluteSwitch.setOnCheckedChangeListener { _, isChecked ->
-            numberInput.setText("")
-            numberInput.requestFocus()
-
-            // get hints from resource
-            val relativeHint = resources.getString(R.string.relativeHint)
-            val absoluteHint = resources.getString(R.string.absoluteHint)
-
-            // set hints
-            if (isChecked) {
-                numberInput.hint = absoluteHint
-            } else {
-                numberInput.hint = relativeHint
-            }
-        }
+//        absoluteSwitch.setOnCheckedChangeListener { _, isChecked ->
+//            numberInput.setText("")
+//            numberInput.requestFocus()
+//
+//            // get hints from resource
+//            val relativeHint = resources.getString(R.string.relativeHint)
+//            val absoluteHint = resources.getString(R.string.absoluteHint)
+//
+//            // set hints
+//            if (isChecked) {
+//                numberInput.hint = absoluteHint
+//            } else {
+//                numberInput.hint = relativeHint
+//            }
+//        }
 
     }
 
