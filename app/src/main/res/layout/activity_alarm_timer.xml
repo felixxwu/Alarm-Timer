@@ -12,26 +12,26 @@
         android:id="@+id/numberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/relativeHint"
         android:inputType="number"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/customTime"
         app:layout_constraintEnd_toStartOf="@+id/customTime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
+        app:layout_constraintTop_toTopOf="@+id/customTime" />
 
     <Button
         android:id="@+id/set5"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="5m"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -43,28 +43,26 @@
 
     <Button
         android:id="@+id/set10"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="10m"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/set5" />
 
     <Button
         android:id="@+id/set15"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="15m"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -72,16 +70,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/set5" />
 
     <Button
         android:id="@+id/set120"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="@dimen/quick_timer_margin_top"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="2h"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -89,16 +86,16 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/set30" />
+        app:layout_constraintTop_toTopOf="@+id/set60" />
 
     <Button
         android:id="@+id/set60"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="1h"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -110,12 +107,11 @@
 
     <Button
         android:id="@+id/set30"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="@dimen/quick_timer_margin_top"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="30m"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -123,32 +119,32 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/set10" />
+        app:layout_constraintTop_toTopOf="@+id/set20" />
 
     <Button
         android:id="@+id/set20"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="@dimen/quick_timer_margin_top"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="20m"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set5" />
 
     <Button
         android:id="@+id/set45"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="@dimen/quick_timer_margin_top"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="45m"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -156,16 +152,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/set15" />
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <Button
         android:id="@+id/set180"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/quick_timer_margin"
-        android:layout_marginTop="@dimen/quick_timer_margin_top"
         android:layout_marginEnd="@dimen/quick_timer_margin"
-        android:background="@color/quick_timer_button_bg"
         android:text="3h"
         android:textAllCaps="true"
         android:textColor="@color/quick_timer_text_color"
@@ -173,7 +168,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/set45" />
+        app:layout_constraintTop_toTopOf="@+id/set60" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -193,7 +188,7 @@
         android:id="@+id/customTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/button"
         android:padding="10dp"
@@ -201,26 +196,14 @@
         android:textAllCaps="false"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="?android:attr/listDivider"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set180" />
 
     <EditText
         android:id="@+id/customLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="What's my timer for?"
@@ -229,7 +212,7 @@
         app:layout_constraintEnd_toStartOf="@+id/labelSwitch"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Switch
         android:id="@+id/labelSwitch"
@@ -248,7 +231,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Quick Timers"
         app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +241,7 @@
         android:id="@+id/absoluteSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="Absolute Time"
         app:layout_constraintEnd_toEndOf="parent"
@@ -268,23 +251,12 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:text="*All alarms will delete after use"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/absoluteSwitch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/absoluteSwitch" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_foreground" />
 
     <View
         android:id="@+id/divider2"
@@ -309,5 +281,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set30" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Alarm Timer"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

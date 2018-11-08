@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_alarm_timer.*
 import android.provider.AlarmClock
+import android.support.v7.app.AlertDialog
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
@@ -15,6 +16,8 @@ import android.text.Editable
 import android.widget.Switch
 
 class AlarmTimer : AppCompatActivity() {
+
+    lateinit var mainActivity: AlarmTimer
 
     private fun toast(text: String) {
         val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
@@ -55,17 +58,34 @@ class AlarmTimer : AppCompatActivity() {
 
     // set the actual alarm
     private fun setAlarm(label: String, hour: Int, minute: Int) {
-        // create the alarm using intent
-        var intent = Intent (AlarmClock.ACTION_SET_ALARM)
-        intent.putExtra(AlarmClock.EXTRA_MESSAGE, label)
-        intent.putExtra(AlarmClock.EXTRA_HOUR, hour)
-        intent.putExtra(AlarmClock.EXTRA_MINUTES, minute)
-        intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true)
-        startActivity(intent)
+        popup(
+                label,
+                "Alarm set for: ${hour}:${minute}",
+                callback = {
+                    customLabel.text = null
+                    setSwitchState(labelSwitch, false)
+                    numberInput.text = null
+                    setSwitchState(absoluteSwitch, false)
+
+                    // create the alarm using intent
+                    val intent = Intent (AlarmClock.ACTION_SET_ALARM)
+                    intent.putExtra(AlarmClock.EXTRA_MESSAGE, label)
+                    intent.putExtra(AlarmClock.EXTRA_HOUR, hour)
+                    intent.putExtra(AlarmClock.EXTRA_MINUTES, minute)
+                    intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true)
+                    startActivity(intent)
+
+                    numberInput.requestFocus()
+
+                },
+                button = "Set Alarm"
+        )
+
+
 
         // show all the alarms
-        intent = Intent (AlarmClock.ACTION_SHOW_ALARMS)
-        startActivity(intent)
+//        intent = Intent (AlarmClock.ACTION_SHOW_ALARMS)
+//        startActivity(intent)
     }
 
     // for the custom timer button
@@ -122,6 +142,8 @@ class AlarmTimer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm_timer)
+
+        mainActivity = this
 
         // show soft keyboard on start
         numberInput.requestFocus()
@@ -186,5 +208,30 @@ class AlarmTimer : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun popup(
+            title: String,
+            message: String = "",
+            cancelable: Boolean = false,
+            button: String = "OK",
+            callback: () -> (Unit) = {},
+            icon: Int? = null
+    ) {
+        val dialog = AlertDialog.Builder(
+                mainActivity,
+                android.R.style.Theme_Material_Light_Dialog_Alert
+        )
+        dialog.setTitle(title)
+                .setCancelable(cancelable)
+                .setNegativeButton("Cancel") {_,_->}
+                .setPositiveButton(button) {_, _-> callback()}
+        if (message != "") {
+            dialog.setMessage(message)
+        }
+        if (icon != null) {
+            dialog.setIcon(icon)
+        }
+        dialog.show()
     }
 }
