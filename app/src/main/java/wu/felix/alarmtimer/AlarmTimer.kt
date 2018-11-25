@@ -150,7 +150,7 @@ class AlarmTimer : AppCompatActivity() {
         mainActivity = this
 
         // show soft keyboard on start
-        numberInput.requestFocus()
+        customLabel.requestFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
