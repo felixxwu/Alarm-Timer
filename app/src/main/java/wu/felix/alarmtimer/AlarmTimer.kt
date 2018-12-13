@@ -9,14 +9,12 @@ import kotlinx.android.synthetic.main.activity_alarm_timer.*
 import android.provider.AlarmClock
 import android.support.v7.app.AlertDialog
 import android.text.TextWatcher
-import android.view.View
 import android.widget.Toast
 import java.util.*
 import android.view.inputmethod.InputMethodManager
 import android.text.Editable
 import android.text.InputType
 import android.widget.EditText
-import android.app.Activity
 
 
 
@@ -57,7 +55,7 @@ class AlarmTimer : AppCompatActivity() {
     // set the actual alarm
     private fun setAlarm(label: String, hour: Int, minute: Int) {
         popup(
-                "Alarm for: ${hour}:${minute}",
+                "Alarm for: $hour:$minute",
                 "Alarm label:",
                 inputCallback = { input ->
                     numberInput.text = null
@@ -79,6 +77,8 @@ class AlarmTimer : AppCompatActivity() {
                 cancelable = false
         )
 
+        showKeyboard()
+
 
         // show all the alarms
 //        intent = Intent (AlarmClock.ACTION_SHOW_ALARMS)
@@ -86,7 +86,7 @@ class AlarmTimer : AppCompatActivity() {
     }
 
     // for the custom timer button
-    private fun setCustomAlarm(view: View, imm: InputMethodManager) {
+    private fun setCustomAlarm() {
         // check for valid input
         if ("${numberInput.text}" == "") {
             toast("Please input a time")
@@ -108,7 +108,7 @@ class AlarmTimer : AppCompatActivity() {
         }
 
         // hide soft keyboard
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+//        imm.hideSoftInputFromWindow(view.windowToken, 0)
 
 //        if (absoluteSwitch.isChecked) {
 
@@ -155,9 +155,9 @@ class AlarmTimer : AppCompatActivity() {
         set180.setOnClickListener { setAlarmIn(180) }
 
         // custom length timer
-        customTime.setOnClickListener { view ->
+        customTime.setOnClickListener {
             // view and imm are passed to hide the soft keyboard
-            setCustomAlarm(view, imm)
+            setCustomAlarm()
         }
 
         toAlarms.setOnClickListener {
@@ -261,14 +261,4 @@ class AlarmTimer : AppCompatActivity() {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 
-    private fun hideKeyboard(activity: Activity) {
-        val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        //Find the currently focused view, so we can grab the correct window token from it.
-        var view = activity.currentFocus
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if (view == null) {
-            view = View(activity)
-        }
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
-    }
 }
