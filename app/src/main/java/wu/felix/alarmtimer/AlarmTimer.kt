@@ -122,51 +122,48 @@ class AlarmTimer : AppCompatActivity() {
             input += btn
         }
         if (input >= 2400) {
-            input = 2359
-        }
-        if (input == 0) {
-            display.text = getString(R.string.emptyDisplayText)
-        } else {
-            display.text = input.toString()
-        }
-        setCustomText()
-        setAbsText()
-    }
-
-    private fun setCustomText() {
-        if (input == 0) {
-//            customTime.text = getString(R.string.emptySetAlarmMessage)
-            customTime.visibility = View.INVISIBLE
+            input /= 10
             return
         }
-        customTime.visibility = View.VISIBLE
-
-        var label = "Set alarm in"
-        if (input / 100 > 0) {
-            label += " ${input / 100}h"
-        }
-        if (input % 100 > 0) {
-            label += " ${input % 100}m"
-        }
-        customTime.text = label
+        setDisplay(input)
+        setButtonTexts()
     }
 
-    private fun setAbsText() {
-        if (input == 0) {
-//            absTime.text = getString(R.string.emptySetAlarmMessage)
+    private fun setDisplay(value: Int) {
+        val displayText = "${value/100}:${format(value%100)}"
+        display.text = displayText
+    }
+
+    private fun setButtonTexts() {
+
+        var mins = input % 100
+        var hrs = input / 100
+
+        if (input == 0 || mins >= 60) {
+            customTime.visibility = View.INVISIBLE
             absTime.visibility = View.INVISIBLE
             return
         }
+        customTime.visibility = View.VISIBLE
         absTime.visibility = View.VISIBLE
 
-        var label = "Set alarm for"
-        label += " ${input / 100}:${format(input % 100)}"
-        label += if (input < 1200) {
+        if (input in 60..99) {
+            hrs += 1
+            mins -= 60
+        }
+
+        val customTimeLabel = "Set alarm in ${hrs}h ${mins}m"
+        customTime.text = customTimeLabel
+
+        var absTimeLabel = "Set alarm for $hrs:${format(mins)}"
+        absTimeLabel += if (input < 1200) {
             " (am)"
         } else {
             " (pm)"
         }
-        absTime.text = label
+        absTime.text = absTimeLabel
+
+
     }
 
     private fun absTimeClickHandler() {
@@ -196,8 +193,7 @@ class AlarmTimer : AppCompatActivity() {
         b9.setOnClickListener { button(9) }
         delete.setOnClickListener { button(-1) }
 
-        setCustomText()
-        setAbsText()
+        setButtonTexts()
 
         // custom length timer
         customTime.setOnClickListener {
