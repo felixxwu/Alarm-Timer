@@ -1,28 +1,33 @@
 package wu.felix.alarmtimer
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_alarm_timer.*
 import android.provider.AlarmClock
 import android.support.v7.app.AlertDialog
-import android.text.TextWatcher
-import android.widget.Toast
-import java.util.*
-import android.view.inputmethod.InputMethodManager
-import android.text.Editable
+import android.support.v7.app.AppCompatActivity
 import android.text.InputType
+import android.view.View
 import android.widget.EditText
-
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_alarm_timer.*
+import java.util.*
 
 
 class AlarmTimer : AppCompatActivity() {
 
+    private var input = 0
+
     private fun toast(text: String) {
         val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
         toast.show()
+    }
+
+    private fun format(min: Int): String {
+        return if (min < 10) {
+            "0$min"
+        } else {
+            min.toString()
+        }
     }
 
     private fun setAlarmIn(minutes: Int) {
@@ -55,21 +60,20 @@ class AlarmTimer : AppCompatActivity() {
     // set the actual alarm
     private fun setAlarm(label: String, hour: Int, minute: Int) {
         popup(
-                "Alarm for: $hour:$minute",
+                "Alarm for: $hour:${format(minute)}",
                 "Alarm label:",
-                inputCallback = { input ->
-                    numberInput.text = null
+                inputCallback = { inputBox ->
+                    input = 0
+                    button(-1)
 //                    setSwitchState(absoluteSwitch, false)
 
                     // create the alarm using intent
                     val intent = Intent(AlarmClock.ACTION_SET_ALARM)
-                    intent.putExtra(AlarmClock.EXTRA_MESSAGE, input.text.toString())
+                    intent.putExtra(AlarmClock.EXTRA_MESSAGE, inputBox.text.toString())
                     intent.putExtra(AlarmClock.EXTRA_HOUR, hour)
                     intent.putExtra(AlarmClock.EXTRA_MINUTES, minute)
                     intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true)
                     startActivity(intent)
-
-                    numberInput.requestFocus()
 
                 },
                 button = "Set Alarm",
@@ -77,7 +81,7 @@ class AlarmTimer : AppCompatActivity() {
                 cancelable = false
         )
 
-        showKeyboard()
+//        showKeyboard()
 
 
         // show all the alarms
@@ -88,13 +92,12 @@ class AlarmTimer : AppCompatActivity() {
     // for the custom timer button
     private fun setCustomAlarm() {
         // check for valid input
-        if ("${numberInput.text}" == "") {
+        if (input == 0) {
             toast("Please input a time")
             return
         }
 
         // decode the input
-        val input = numberInput.text
         val hours = Integer.parseInt(input.toString()) / 100
         val minutes = Integer.parseInt(input.toString()) % 100
 
@@ -107,30 +110,73 @@ class AlarmTimer : AppCompatActivity() {
             return
         }
 
-        // hide soft keyboard
-//        imm.hideSoftInputFromWindow(view.windowToken, 0)
-
-//        if (absoluteSwitch.isChecked) {
-
-
-//            // get current time for label
-//            val rightNow = Calendar.getInstance()
-//            var currentHour = rightNow.get(Calendar.HOUR)
-//            val currentMinute = rightNow.get(Calendar.MINUTE)
-//
-//            // adjust for am/pm
-//            if (rightNow.get(Calendar.AM_PM) == Calendar.PM) {
-//                currentHour += 12
-//            }
-//
-//            val label = "Alarm set at $currentHour:$currentMinute"
-//            setAlarm(label, hours, minutes)
-
-
-//        } else {
-//            // convert hours into minutes and set a relative alarm
         setAlarmIn(hours * 60 + minutes)
-//        }
+
+    }
+
+    private fun button(btn: Int) {
+        if (btn == -1) {
+            input /= 10
+        } else {
+            input *= 10
+            input += btn
+        }
+        if (input >= 2400) {
+            input = 2359
+        }
+        if (input == 0) {
+            display.text = getString(R.string.emptyDisplayText)
+        } else {
+            display.text = input.toString()
+        }
+        setCustomText()
+        setAbsText()
+    }
+
+    private fun setCustomText() {
+        if (input == 0) {
+//            customTime.text = getString(R.string.emptySetAlarmMessage)
+            customTime.visibility = View.INVISIBLE
+            return
+        }
+        customTime.visibility = View.VISIBLE
+
+        var label = "Set alarm in"
+        if (input / 100 > 0) {
+            label += " ${input / 100}h"
+        }
+        if (input % 100 > 0) {
+            label += " ${input % 100}m"
+        }
+        customTime.text = label
+    }
+
+    private fun setAbsText() {
+        if (input == 0) {
+//            absTime.text = getString(R.string.emptySetAlarmMessage)
+            absTime.visibility = View.INVISIBLE
+            return
+        }
+        absTime.visibility = View.VISIBLE
+
+        var label = "Set alarm for"
+        label += " ${input / 100}:${format(input % 100)}"
+        label += if (input < 1200) {
+            " (am)"
+        } else {
+            " (pm)"
+        }
+        absTime.text = label
+    }
+
+    private fun absTimeClickHandler() {
+        // check for valid input
+        if (input == 0) {
+            toast("Please input a time")
+            return
+        }
+
+        setAlarm("", input / 100, input % 100)
 
     }
 
@@ -138,21 +184,20 @@ class AlarmTimer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm_timer)
 
-        // show soft keyboard on start
-        numberInput.requestFocus()
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        b0.setOnClickListener { button(0) }
+        b1.setOnClickListener { button(1) }
+        b2.setOnClickListener { button(2) }
+        b3.setOnClickListener { button(3) }
+        b4.setOnClickListener { button(4) }
+        b5.setOnClickListener { button(5) }
+        b6.setOnClickListener { button(6) }
+        b7.setOnClickListener { button(7) }
+        b8.setOnClickListener { button(8) }
+        b9.setOnClickListener { button(9) }
+        delete.setOnClickListener { button(-1) }
 
-        // quick timers
-        set5.setOnClickListener { setAlarmIn(5) }
-        set10.setOnClickListener { setAlarmIn(10) }
-        set15.setOnClickListener { setAlarmIn(15) }
-        set20.setOnClickListener { setAlarmIn(20) }
-        set30.setOnClickListener { setAlarmIn(30) }
-        set45.setOnClickListener { setAlarmIn(45) }
-        set60.setOnClickListener { setAlarmIn(60) }
-        set120.setOnClickListener { setAlarmIn(120) }
-        set180.setOnClickListener { setAlarmIn(180) }
+        setCustomText()
+        setAbsText()
 
         // custom length timer
         customTime.setOnClickListener {
@@ -160,52 +205,16 @@ class AlarmTimer : AppCompatActivity() {
             setCustomAlarm()
         }
 
-        toAlarms.setOnClickListener {
-            intent = Intent(AlarmClock.ACTION_SET_ALARM)
-            startActivity(intent)
+        absTime.setOnClickListener {
+            absTimeClickHandler()
         }
 
-        numberInput.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun afterTextChanged(s: Editable?) {}
-            @SuppressLint("SetTextI18n")
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // decode the input
-                if (numberInput.text.toString() == "") {
-                    customTime.text = "Set Custom Timer"
-                    return
-                }
-                val input = Integer.parseInt(numberInput.text.toString())
-
-                var label = "Set alarm in"
-                if (input / 100 > 0) {
-                    label += " ${input / 100}h"
-                }
-                if (input % 100 > 0) {
-                    label += " ${input % 100}m"
-                }
-                customTime.text = label
-            }
-        })
-    }
-
-    // change the hint depending on custom timer function
-//        absoluteSwitch.setOnCheckedChangeListener { _, isChecked ->
-//            numberInput.setText("")
-//            numberInput.requestFocus()
-//
-//            // get hints from resource
-//            val relativeHint = resources.getString(R.string.relativeHint)
-//            val absoluteHint = resources.getString(R.string.absoluteHint)
-//
-//            // set hints
-//            if (isChecked) {
-//                numberInput.hint = absoluteHint
-//            } else {
-//                numberInput.hint = relativeHint
-//            }
+//        toAlarms.setOnClickListener {
+//            intent = Intent(AlarmClock.ACTION_SET_ALARM)
+//            startActivity(intent)
 //        }
 
+    }
 
     private fun popup(
             title: String,
@@ -224,24 +233,25 @@ class AlarmTimer : AppCompatActivity() {
         dialog.setTitle(title)
                 .setCancelable(cancelable)
                 .setNegativeButton("Cancel") { _, _ ->
-                    numberInput.setText("")
+                    input = 0
+                    button(-1)
                 }
                 .setPositiveButton(button) { _, _ -> callback() }
         if (inputCallback != null) {
 
             // since the inputCallback is set, show an input and pass the data to the callback
-            val input = EditText(this)
+            val inputBox = EditText(this)
             // set the text type and box hint
-            input.inputType = InputType.TYPE_CLASS_TEXT
-            input.setText(label)
-            input.setSelectAllOnFocus(true)
+            inputBox.inputType = InputType.TYPE_CLASS_TEXT
+            inputBox.setText(label)
+            inputBox.setSelectAllOnFocus(true)
 
             // add the inputbox and callback to the dialog
-            dialog.setView(input)
-            dialog.setPositiveButton(button) { _, _ -> inputCallback(input) }
+            dialog.setView(inputBox)
+            dialog.setPositiveButton(button) { _, _ -> inputCallback(inputBox) }
 
             // show the keyboard so the user can start typing immediately
-            showKeyboard()
+//            showKeyboard()
         } else {
 
             // otherwise just use the regular callback
@@ -256,9 +266,9 @@ class AlarmTimer : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showKeyboard() {
-        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
-    }
+//    private fun showKeyboard() {
+//        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+//    }
 
 }

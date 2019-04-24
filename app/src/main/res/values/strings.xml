@@ -9,4 +9,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="relativeHint">\"130\" = 1h 30m timer</string>
     <string name="absoluteHint">\"1430\" = 14:30 alarm</string>
+    <string name="deleteText"><![CDATA[<]]></string>
+    <string name="emptyDisplayText">000</string>
+    <string name="emptySetAlarmMessage">Start typing...</string>
 </resources>
