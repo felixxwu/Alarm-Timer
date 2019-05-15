@@ -7,4 +7,6 @@
     <color name="quick_timer_button_bg">#ffffff</color>
 
     <color name="black_overlay">#2c000000</color>
+    <color name="highlight_end">#D81B60</color>
+    <color name="light">#aaaaaa</color>
 </resources>

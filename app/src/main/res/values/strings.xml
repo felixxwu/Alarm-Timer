@@ -12,4 +12,5 @@
     <string name="deleteText"><![CDATA[<]]></string>
     <string name="emptyDisplayText">000</string>
     <string name="emptySetAlarmMessage">Start typing...</string>
+    <string name="setalarm_text">OK</string>
 </resources>

@@ -1,12 +1,14 @@
 package wu.felix.alarmtimer
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
-import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_alarm_timer.*
@@ -16,6 +18,9 @@ import java.util.*
 class AlarmTimer : AppCompatActivity() {
 
     private var input = 0
+    private var isTimer = true
+    private var light: ColorStateList? = null
+    private var dark: ColorStateList? = null
 
     private fun toast(text: String) {
         val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
@@ -125,61 +130,135 @@ class AlarmTimer : AppCompatActivity() {
             input /= 10
             return
         }
-        setDisplay(input)
         setButtonTexts()
     }
 
     private fun setDisplay(value: Int) {
-        val displayText = "${value/100}:${format(value%100)}"
+        val displayText: String
+        val endText: String
+        if (isTimer) {
+            displayText = "${value / 100}h,${format(value % 100)}"
+            endText = "m"
+        } else {
+            displayText = "${value / 100}:${format(value % 100)}"
+            endText = if (input < 1200) {
+                "am"
+            } else {
+                "pm"
+            }
+        }
         display.text = displayText
+        display_end.text = endText
+    }
+
+    private fun isCustomTimeValid(): Boolean {
+
+        val mins = input % 100
+
+        if (input in 60..99) {
+            return true
+        }
+
+        if (mins >= 60 || input == 0) {
+            return false
+        }
+
+        return true
+    }
+
+    private fun isAbsTimeValid(): Boolean {
+
+        val mins = input % 100
+
+        if (mins >= 60) {
+            return false
+        }
+
+        return true
+
     }
 
     private fun setButtonTexts() {
 
+        setDisplay(input)
+
         var mins = input % 100
         var hrs = input / 100
-
-        if (input == 0 || mins >= 60) {
-            customTime.visibility = View.INVISIBLE
-            absTime.visibility = View.INVISIBLE
-            return
-        }
-        customTime.visibility = View.VISIBLE
-        absTime.visibility = View.VISIBLE
 
         if (input in 60..99) {
             hrs += 1
             mins -= 60
         }
 
-        val customTimeLabel = "Set alarm in ${hrs}h ${mins}m"
-        customTime.text = customTimeLabel
-
-        var absTimeLabel = "Set alarm for $hrs:${format(mins)}"
-        absTimeLabel += if (input < 1200) {
-            " (am)"
+        if (isTimer) {
+            alarmMode.setTextColor(light)
+            alarmMode.typeface = Typeface.DEFAULT
+            timerMode.setTextColor(dark)
+            timerMode.typeface = Typeface.DEFAULT_BOLD
         } else {
-            " (pm)"
+            timerMode.setTextColor(light)
+            timerMode.typeface = Typeface.DEFAULT
+            alarmMode.setTextColor(dark)
+            alarmMode.typeface = Typeface.DEFAULT_BOLD
         }
-        absTime.text = absTimeLabel
+
+
+
+//        if (isCustomTimeValid()) {
+//            val customTimeLabel = "Set alarm in ${hrs}h ${mins}m"
+//            customTime.text = customTimeLabel
+//        } else {
+//            val customTimeLabel = "Not a valid time"
+//            customTime.text = customTimeLabel
+//        }
+//
+//        if (isAbsTimeValid()) {
+//            var absTimeLabel = "Set alarm for $hrs:${format(mins)}"
+//            absTimeLabel += if (input < 1200) {
+//                " (am)"
+//            } else {
+//                " (pm)"
+//            }
+//            absTime.text = absTimeLabel
+//        } else {
+//            val absTimeLabel = "Not a valid time"
+//            absTime.text = absTimeLabel
+//        }
+
 
 
     }
 
-    private fun absTimeClickHandler() {
-        // check for valid input
-        if (input == 0) {
-            toast("Please input a time")
-            return
+    private fun switchMode() {
+        isTimer = !isTimer
+        setButtonTexts()
+    }
+
+    private fun switchToTimer() {
+        isTimer = true
+        setButtonTexts()
+    }
+
+    private fun switchToAlarm() {
+        isTimer = false
+        setButtonTexts()
+    }
+
+    private  fun switchAmPm() {
+        if (input < 1200) {
+            input += 1200
+        } else  {
+            input -= 1200
         }
-
-        setAlarm("", input / 100, input % 100)
-
+        setButtonTexts()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm_timer)
+
+        light = alarmMode.textColors
+        dark = timerMode.textColors
 
         b0.setOnClickListener { button(0) }
         b1.setOnClickListener { button(1) }
@@ -193,17 +272,29 @@ class AlarmTimer : AppCompatActivity() {
         b9.setOnClickListener { button(9) }
         delete.setOnClickListener { button(-1) }
 
+        display_end.setOnClickListener { switchAmPm() }
+        display.setOnClickListener { switchMode() }
+
+        alarmMode.setOnClickListener { switchToAlarm() }
+        timerMode.setOnClickListener { switchToTimer() }
+
+        set.setOnClickListener {
+            if (isTimer) {
+                if (isCustomTimeValid()) {
+                    setCustomAlarm()
+                } else {
+                    toast("Invalid timer")
+                }
+            } else {
+                if (isAbsTimeValid()) {
+                    setAlarm("", input / 100, input % 100)
+                } else {
+                    toast("Invalid alarm time, minutes exceed 59")
+                }
+            }
+        }
+
         setButtonTexts()
-
-        // custom length timer
-        customTime.setOnClickListener {
-            // view and imm are passed to hide the soft keyboard
-            setCustomAlarm()
-        }
-
-        absTime.setOnClickListener {
-            absTimeClickHandler()
-        }
 
 //        toAlarms.setOnClickListener {
 //            intent = Intent(AlarmClock.ACTION_SET_ALARM)
@@ -211,6 +302,11 @@ class AlarmTimer : AppCompatActivity() {
 //        }
 
     }
+
+
+
+
+
 
     private fun popup(
             title: String,

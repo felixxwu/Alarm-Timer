@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="highlight_colour" >#ffffff</drawable>
+    <drawable name="highlight_colour_end">#ffffff</drawable>
+    <!--<drawable name="highlight_colour_end">#ddC45B5B</drawable>-->
+</resources>

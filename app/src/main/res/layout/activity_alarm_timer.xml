@@ -8,47 +8,13 @@
     android:visibility="visible"
     tools:context=".AlarmTimer">
 
-    <Button
-        android:id="@+id/customTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/button"
-        android:padding="10dp"
-        android:text="Set Custom Timer"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/absTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/absTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/button"
-        android:padding="10dp"
-        android:text="Set Absolute Timer"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/b2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/b0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:paddingLeft="@dimen/keysidepad"
         android:paddingTop="@dimen/keyvertpad"
         android:paddingRight="@dimen/keysidepad"
@@ -59,6 +25,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingLeft="@dimen/keysidepad"
+        android:paddingTop="@dimen/keyvertpad"
+        android:paddingRight="@dimen/keysidepad"
+        android:paddingBottom="@dimen/keyvertpad"
+        android:text="@string/setalarm_text"
+        android:textAlignment="center"
+        android:textSize="@dimen/textsize"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/b0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/b0" />
 
     <TextView
         android:id="@+id/delete"
@@ -74,8 +58,8 @@
         android:textAlignment="center"
         android:textSize="@dimen/textsize"
         app:layout_constraintBottom_toBottomOf="@+id/b0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/b0" />
+        app:layout_constraintEnd_toStartOf="@+id/b0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/b5"
@@ -245,14 +229,65 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="000"
+        android:background="@drawable/highlight_colour"
+        android:fontFamily="monospace"
+        android:text="0:00"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="36sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/customTime"
+        android:textSize="@dimen/main_text_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/b2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/display_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/highlight_colour_end"
+        android:fontFamily="monospace"
+        android:text="am"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/light"
+        android:textSize="@dimen/main_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/display"
+        app:layout_constraintStart_toEndOf="@+id/display"
+        app:layout_constraintTop_toTopOf="@+id/display" />
+
+    <TextView
+        android:id="@+id/alarmMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Alarm"
+        android:textColor="@color/light"
+        app:layout_constraintBottom_toTopOf="@+id/display"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/timerMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#ffffff"
+        android:text="Timer"
+        app:layout_constraintBottom_toTopOf="@+id/display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
 </android.support.constraint.ConstraintLayout>

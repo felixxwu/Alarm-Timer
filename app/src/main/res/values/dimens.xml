@@ -4,7 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="quick_timer_margin">0dp</dimen>
     <dimen name="quick_timer_margin_top">1dp</dimen>
-    <dimen name="keysidepad">50dp</dimen>
+    <dimen name="keysidepad">40dp</dimen>
     <dimen name="keyvertpad">10dp</dimen>
     <dimen name="textsize">30sp</dimen>
+    <dimen name="main_text_size">50dp</dimen>
 </resources>
