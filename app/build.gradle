@@ -10,8 +10,8 @@ android {
         applicationId "wu.felix.alarmtimer"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "3.0"
+        versionCode 5
+        versionName "3.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
